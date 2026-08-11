@@ -1,0 +1,739 @@
+/**
+ * styles.css
+ * Estilos principales de la tienda Miguelinos de Lelia.
+ * Consejo: si quieres cambiar colores globales, edita las variables en :root.
+ */
+
+/* ===== Light + Drawer — List + Resumen + Scroll + Sticky Actions ===== */
+
+/* Aplica box-sizing a todo: padding/border cuentan dentro del ancho/alto */
+*{box-sizing:border-box}
+
+/* Variables CSS globales (paleta, radios, sombras) */
+:root{
+  --bg:#f5f9ff;            /* color de fondo general */
+  --text:#0f172a;          /* color de texto principal */
+  --muted:#475569;         /* texto secundario/suave */
+  --card:#fff;             /* fondo de tarjetas/paneles */
+  --line:#dbeafe;          /* color de bordes/lineas */
+  --accent:#1e40af;        /* color de acento (botón primario, links) */
+  --shadow:0 8px 24px rgba(2,6,23,.08); /* sombra sutil para tarjetas */
+  --radius:16px            /* radio de borde por defecto para tarjetas */
+}
+
+/* Reset básico + tipografía global y colores base */
+html,body{
+  margin:0;
+  font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text)
+}
+
+/* Contenedor centrado y con máximo ancho de 1200px */
+.container{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 20px
+}
+
+/* Barra superior fija (sticky) al hacer scroll */
+.topbar{
+  position:sticky;
+  top:0;
+  background:#fff;
+  border-bottom:1px solid var(--line);
+  z-index:30             /* sobre el contenido para que no quede tapada */
+}
+
+/* Interno de la topbar: distribución horizontal */
+.topbar-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 0
+}
+
+/* Grupo de marca (logo + texto) */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px
+}
+
+/* Logo real de la marca en el header */
+.brand-logo{
+  height:40px;
+  width:auto;
+  display:block;
+}
+
+/* Marca/ícono cuadrado con iniciales o logo */
+.brand-mark{
+  width:36px;
+  height:36px;
+  border-radius:10px;
+  background:#0f172a;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800
+}
+
+/* Nombre de marca en negrita */
+.brand-copy .brand-name{font-weight:800}
+
+/* Tagline/descrición corta en color atenuado */
+.brand-copy .brand-tag{
+  color:var(--muted);
+  font-size:12px
+}
+
+/* Grupo de "píldoras" (chips) navegables */
+.pills{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap          /* para que salten a la siguiente línea si no caben */
+}
+
+/* Estilo de cada píldora (chip) */
+.pill{
+  border:1px solid var(--line);
+  padding:8px 14px;
+  border-radius:999px;    /* forma de cápsula */
+  background:#fff;
+  text-decoration:none;
+  color:#0f172a;
+  cursor:pointer
+}
+
+/* Hover de la píldora: oscurece el borde */
+.pill:hover{border-color:#cbd5e1}
+
+/* Píldora especial para carrito (con ícono + contador) */
+.cart-pill{
+  display:flex;
+  align-items:center;
+  gap:8px
+}
+
+/* Contador rojo del carrito */
+.count{
+  background:#ef4444;
+  color:#fff;
+  border-radius:999px;
+  padding:2px 8px;
+  font-size:12px
+}
+
+/* Sección hero (cabecera principal con 2 columnas) */
+.hero{
+  display:grid;
+  grid-template-columns:1.5fr 1fr; /* texto más ancho que la imagen */
+  gap:24px;
+  padding:40px 0
+}
+
+/* Título grande del hero */
+.hero-left h1{
+  font-size:44px;
+  margin:0 0 8px
+}
+
+/* Acentuar palabras del h1 con color de acento */
+.hero-left h1 span{color:var(--accent)}
+
+/* Párrafo bajo el hero en tono atenuado y ancho máximo */
+.hero-left p{
+  color:var(--muted);
+  max-width:700px
+}
+
+/* Contenedor de botones del hero */
+.hero-actions{
+  display:flex;
+  gap:10px;
+  margin-top:16px
+}
+
+/* Botón base redondeado */
+.btn{
+  border:1px solid var(--line);
+  padding:10px 14px;
+  border-radius:999px;
+  background:#fff;
+  color:#0f172a;
+  text-decoration:none;
+  display:inline-block
+}
+
+/* Botón primario (azul) */
+.btn.primary{
+  background:var(--accent);
+  border-color:var(--accent);
+  color:#fff
+}
+
+/* Botón ancho completo */
+.btn.full{width:100%}
+
+/* Caja para mostrar logo/imagen (con borde punteado) */
+.logo-box{
+  height:260px;
+  border:2px dashed #cbd5e1;
+  border-radius:var(--radius);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f8fafc;
+  position:relative
+}
+
+/* Imagen dentro de logo-box limitada al 80% del contenedor */
+.logo-box img{
+  max-width:80%;
+  max-height:80%
+}
+
+/* Texto placeholder centrado absolutamente */
+.logo-placeholder{
+  color:#64748b;
+  position:absolute
+}
+
+/* Espaciado de la sección de productos */
+.products{padding:26px 0}
+
+/* Barra de herramientas arriba del grid (filtros/búsqueda) */
+.toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:10px
+}
+
+/* Pestañas/categorías de productos */
+.tabs{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap
+}
+
+/* Estilo de cada pestaña */
+.tab{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:999px;
+  padding:8px 12px;
+  cursor:pointer
+}
+
+/* Pestaña activa con fondo y borde azulado + negrita */
+.tab.active{
+  background:#eef2ff;
+  border-color:#c7d2fe;
+  color:#1e3a8a;
+  font-weight:700
+}
+
+/* Input de búsqueda */
+.search{
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  min-width:240px
+}
+
+/* Grid de tarjetas de producto (responsivo auto-fill) */
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  gap:16px
+}
+
+/* Tarjeta de producto */
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  overflow:hidden;          /* recorta contenido que se salga (bordes redondeados) */
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column
+}
+
+/* Imagen de la tarjeta con alto fijo y recorte cover */
+.card img{
+  width:100%;
+  height:150px;
+  object-fit:cover
+}
+
+/* Cuerpo de la tarjeta: padding y stack vertical */
+.card-body{
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  gap:8px
+}
+
+/* Reutiliza .pill como etiqueta pequeña informativa
+   (OJO: esta redefine .pill en contexto de tarjeta) */
+.pill{
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:999px;
+  background:#f1f5f9;
+  color:#334155;
+  font-size:12px;
+  text-transform:capitalize;
+  width:fit-content
+}
+
+/* Precio en negrita */
+.price{font-weight:800}
+
+/* Descripción corta en tono gris */
+.desc{
+  color:#475569;
+  font-size:13px;
+  margin:-2px 0 2px
+}
+
+/* Texto pequeño + selector de talla/color alineado */
+.small{
+  font-size:12px;
+  color:#334155;
+  display:flex;
+  gap:6px;
+  align-items:center
+}
+
+/* Estilo del <select> pequeño */
+.small select{
+  padding:6px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:#fff
+}
+
+/* ========= Drawer (Carrito lateral deslizante) ========= */
+
+/* Capa oscura al abrir el carrito (bloquea el fondo) */
+.overlay{
+  position:fixed;
+  inset:0;                                  /* top/right/bottom/left:0 */
+  background:rgba(2,6,23,.45);
+  backdrop-filter:blur(2px);
+  z-index:39
+}
+
+/* Panel lateral derecho oculto inicialmente (translateX 100%) */
+.drawer{
+  position:fixed;
+  top:0;
+  right:0;
+  width:420px;
+  max-width:92vw;                           /* responsivo en móviles */
+  height:100vh;
+  background:#fff;
+  border-left:1px solid var(--line);
+  box-shadow:-8px 0 24px rgba(2,6,23,.18);
+  padding:0 0;
+  transform:translateX(100%);               /* fuera de pantalla */
+  transition:transform .25s ease;           /* animación de entrada/salida */
+  z-index:40;
+  display:flex;
+  flex-direction:column
+}
+
+/* Al agregar la clase .open, el drawer entra a la vista */
+.drawer.open{transform:translateX(0)}
+
+/* Cabecera del drawer (título + botón cerrar) */
+.drawer-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px;
+  border-bottom:1px solid var(--line)
+}
+
+/* Zona scrollable del drawer para ítems del carrito */
+.drawer-scroll{
+  flex:1;
+  overflow:auto;                            /* scroll vertical si se desborda */
+  padding:12px 16px 16px 16px
+}
+
+/* Acciones pegadas abajo (sticky): total, botones de pago, etc. */
+.drawer-actions{
+  position:sticky;
+  bottom:0;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  padding:12px 16px 16px;
+  background:#fff;
+  border-top:1px solid var(--line);
+  box-shadow:0 -6px 12px rgba(2,6,23,.06);
+  z-index:2
+}
+
+/* Listado vertical de ítems del carrito */
+.cart-items{
+  display:flex;
+  flex-direction:column;
+  margin-bottom:12px
+}
+
+/* Fila en modo lista: nombre | precio | controles */
+.cart-row.list{
+  display:grid;
+  grid-template-columns:1fr auto auto;      /* meta a la izquierda, precio/cant a la derecha */
+  gap:10px;
+  align-items:center;
+  padding:8px 0
+}
+
+/* Nombre del producto en negrita */
+.cart-row.list .meta .name{font-weight:700}
+
+/* Subtexto (variante/talla) en gris */
+.cart-row.list .meta .sub{
+  color:#64748b;
+  font-size:13px
+}
+
+/* Unidad (p.ej. $/unidad) */
+.cart-row.list .meta .unit{
+  color:#4b5563;
+  font-size:13px;
+  margin-top:2px
+}
+
+/* Separador horizontal tenue */
+.divider{height:1px;background:#e5e7eb}
+
+/* Controles de cantidad (+ / número / -) */
+.qty-controls{
+  display:flex;
+  align-items:center;
+  gap:8px
+}
+
+/* Botón cuadrado para sumar/restar cantidad */
+.qbtn{
+  width:28px;
+  height:28px;
+  border:1px solid #e5e7eb;
+  border-radius:8px;
+  background:#fff;
+  cursor:pointer
+}
+
+/* Número de cantidad con ancho mínimo para que no salte */
+.qnum{min-width:20px;text-align:center}
+
+/* Botón para eliminar ítem (papelera) */
+.trash{
+  background:#f8fafc;
+  border:1px solid #e5e7eb;
+  border-radius:10px;
+  padding:6px;
+  cursor:pointer
+}
+
+/* ====== Resumen de orden dentro del drawer ====== */
+
+/* Contenedor del resumen (subtotal/impuestos/envío) */
+.cart-summary{
+  border-top:1px dashed var(--line);
+  padding-top:12px;
+  margin-top:6px;
+  display:flex;
+  flex-direction:column;
+  gap:8px
+}
+
+/* Tarjeta con marco para el desglose de la orden */
+.order-summary{
+  background:#fafafa;
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:10px;
+  margin-bottom:10px
+}
+
+/* Título del bloque "Resumen del pedido" */
+.order-title{
+  font-weight:700;
+  margin-bottom:6px
+}
+
+/* Lista de líneas del pedido (cada producto) */
+.order-list{
+  display:flex;
+  flex-direction:column;
+  gap:4px
+}
+
+/* Fila del resumen: miniatura | texto | qty | total */
+.order-line{
+  display:grid;
+  grid-template-columns:auto 1fr auto auto;
+  align-items:center;
+  gap:10px;
+  padding:6px 0;
+  border-bottom:1px dashed #eef2f7
+}
+
+/* Quita borde en la última línea */
+.order-line:last-child{border-bottom:none}
+
+/* Miniatura cuadrada del producto */
+.order-thumb{
+  width:36px;
+  height:36px;
+  border-radius:8px;
+  object-fit:cover;
+  border:1px solid var(--line)
+}
+
+/* Contenedor de textos (nombre + subtotal línea) */
+.order-text{
+  display:flex;
+  flex-direction:column;
+  gap:2px
+}
+
+/* Nombre con cantidad (e.g., "2× Camiseta") */
+.order-text .qtyname{
+  font-size:13px;
+  color:#0f172a
+}
+
+/* Total de la línea en gris */
+.order-text .linetotal{
+  font-size:13px;
+  color:#334155
+}
+
+/* Controles de cantidad en versión mini dentro del resumen */
+.order-qty-controls{
+  display:flex;
+  align-items:center;
+  gap:6px
+}
+
+/* Botón mini de cantidad */
+.qbtn.mini{
+  width:24px;
+  height:24px;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:#fff;
+  cursor:pointer;
+  line-height:1
+}
+
+/* Número mini centrado */
+.qnum.mini{
+  min-width:16px;
+  text-align:center;
+  font-size:13px
+}
+
+/* Botón mini de borrar en el resumen */
+.mini-trash{
+  background:#f8fafc;
+  border:1px solid var(--line);
+  border-radius:8px;
+  padding:6px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center
+}
+
+/* Hover del mini-trash aclara el fondo */
+.mini-trash:hover{background:#f1f5f9}
+
+/* Fila simple para totales (texto izquierda / valor derecha) */
+.row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center
+}
+
+/* Estilo para el total final (más grande) */
+.total{font-size:18px}
+
+/* ====== Formularios de checkout (nombre, notas, etc.) ====== */
+
+/* Layout de formulario en columna con separación */
+.form{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin:8px 0
+}
+
+/* Campos de formulario con borde y radio suaves */
+.form input,
+.form textarea{
+  padding:10px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  width:100%;
+  background:#fff
+}
+
+/* Texto de ayuda bajo campos */
+.hint{
+  color:#475569;
+  font-size:12px;
+  margin-top:6px
+}
+
+/* ====== Toast/Notificación flotante ====== */
+
+/* Toast centrado abajo, con transición de aparición */
+.toast{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%) translateY(10px);
+  background:#111827;
+  color:#fff;
+  padding:10px 14px;
+  border-radius:999px;
+  opacity:0;
+  transition:all .2s ease;
+  z-index:50
+}
+
+/* Mostrar el toast: sube y hace visible */
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0)
+}
+
+/* ====== Footer ====== */
+
+/* Pie de página con borde superior y fondo blanco */
+.footer{
+  border-top:1px solid var(--line);
+  margin-top:26px;
+  background:#fff
+}
+
+/* Grid interno del footer (3 columnas) */
+.foot-inner{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr;
+  gap:16px;
+  padding:18px 0;
+  align-items:center
+}
+
+/* Texto del copyright en gris */
+.foot-copy{color:#475569}
+
+/* Enlaces/chips de contacto en el footer */
+.foot-contact{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap
+}
+
+/* Chip/enlace simple */
+.chip{
+  border:1px solid var(--line);
+  padding:8px 12px;
+  border-radius:999px;
+  text-decoration:none;
+  color:#0f172a;
+  background:#fff
+}
+
+/* Enlaces a redes en azul oscuro */
+.foot-social .link{
+  color:#1e40af;
+  text-decoration:none;
+  margin-right:12px
+}
+
+/* ====== Media Queries (Responsive) ====== */
+
+/* Ajustes para pantallas <= 1024px */
+@media (max-width:1024px){
+  .hero{grid-template-columns:1fr}          /* hero pasa a 1 columna */
+  .categories{grid-template-columns:1fr}    /* seguridad si hay grid de categorías */
+}
+
+
+
+/* === Swatches de color (círculos radio) + ayudas === */
+.color-picker{display:flex;gap:10px;margin:6px 0 10px;border:0;padding:0}
+.color-picker input[type=radio]{position:absolute;opacity:0;pointer-events:none}
+.swatch{--swatch:#ccc;width:26px;height:26px;border-radius:999px;display:inline-block;background:var(--swatch);
+  border:2px solid rgba(0,0,0,.12);box-shadow:inset 0 0 0 0 rgba(0,0,0,.2);cursor:pointer;transition:transform .12s ease, box-shadow .12s ease}
+.color-picker input[type=radio]:checked + .swatch{box-shadow:0 0 0 3px rgba(0,0,0,.05), inset 0 0 0 3px #fff; transform:scale(1.02)}
+.color-picker input[type=radio]:focus-visible + .swatch{outline:3px solid #7aa2ff; outline-offset:2px}
+.color-picker input[disabled] + .swatch{opacity:.35; cursor:not-allowed}
+.label-row{display:flex;justify-content:space-between;font-size:12px;color:var(--muted,#475569);margin:2px 0 2px}
+.muted{color:var(--muted,#64748b)}
+
+
+
+/* === Tallas como PILLS (radios) === */
+.size-picker{display:flex;gap:8px;margin:4px 0 14px;border:0;padding:0}
+.size-picker input[type=radio]{position:absolute;opacity:0;pointer-events:none}
+.size{display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:34px;padding:0 10px;
+  border-radius:12px;border:1.5px solid rgba(0,0,0,.12);cursor:pointer;font-weight:600}
+.size-picker input[type=radio]:checked + .size{background:#0b0f17;color:#fff;border-color:#0b0f17}
+.size-picker input[disabled] + .size{opacity:.35;cursor:not-allowed}
+
+
+/* Logo de la marca (imagen) */
+.brand-logo{height:40px;width:auto;border-radius:10px}
+
+
+/* ====== Beneficios + Sobre nosotros ====== */
+.benefits{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin:-10px auto 22px;
+}
+.benefit-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:14px;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+}
+.benefit-icon{font-size:22px; line-height:1;}
+.benefit-title{font-weight:800; margin-bottom:2px}
+.benefit-text{color:var(--muted); font-size:13px}
+
+.about{padding:10px 0 10px}
+.about-card{
+  background:linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:18px;
+}
+.about-card h2{margin:0 0 8px}
+.about-card p{margin:0; color:var(--muted); max-width:900px}
+.about-actions{display:flex; gap:10px; margin-top:14px; flex-wrap:wrap}
+
+/* Responsive */
+@media (max-width:1024px){
+  .benefits{grid-template-columns:1fr}
+}

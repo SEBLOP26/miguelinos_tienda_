@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<!--
+  Archivo: index.html (anotado)
+  Proyecto: Miguelinos de Lelia — Ropa · Alimentación · Hogar
+  Descripción: Página de tienda con catálogo, filtro, búsqueda y carrito tipo drawer.
+  Nota: Todos los comentarios "<!-- " (HTML) y "// ..." (JS) explican cada parte.... -->
+<html lang="es">
+<head>
+  <!-- Meta básicos para codificación y responsividad -->
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <!-- Título de la pestaña/navegador -->
+  <title>Miguelinos de Lelia — Productos Lácteos</title>
+
+  <!-- Hoja de estilos principal -->
+  <!-- IMPORTANTE: si tu CSS se llama miguelinos_styles.css, aquí debe coincidir -->
+  <link rel="stylesheet" href="styles.css"/>
+
+  <!-- Favicon (icono de pestaña) -->
+  <link rel="icon" href="logo-miguelinos.jpeg"/>
+</head>
+<body>
+  <!-- ====================== HEADER / TOPBAR ====================== -->
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <!-- Identidad de marca (logo + nombre + tagline) -->
+      <div class="brand">
+        <img class="brand-logo" src="logo-miguelinos.jpeg" alt="Miguelinos de Lelia" onerror="this.style.display='none'"/>
+        <div class="brand-copy">
+          <div class="brand-name">Miguelinos de Lelia</div>
+          <div class="brand-tag">• Productos Lácteos Artesanales •</div>
+        </div>
+      </div>
+
+      <!-- Navegación superior: enlaces a secciones + botón para abrir carrito -->
+      <nav class="pills">
+        <!-- <a href="#ropa" class="pill">Ropa</a>
+        <a href="#alimentos" class="pill">Alimentación</a>
+        <a href="#hogar" class="pill">Hogar y Accesorios</a>-->
+        <!-- Botón que abre el drawer del carrito; el span .count muestra total de ítems -->
+        <button id="open-cart" class="pill cart-pill">🛒 Carrito <span id="cart-count" class="count">0</span></button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ====================== HERO (bienvenida y CTA) ====================== -->
+  <section class="hero container">
+    <div class="hero-left">
+      <h1>Bienvenido a <span>Miguelinos de Lelia</span></h1>
+      <p>Productos lácteos frescos y artesanales: yogurt, yogurt griego, queso, leche y más. Haz tu pedido y paga por WhatsApp.</p>
+      <div class="hero-actions">
+        <!-- CTA a la sección de productos -->
+        <a href="#productos" class="btn primary">Ver productos</a>
+        <!-- CTA directo a WhatsApp (abre en nueva pestaña) -->
+        <a href="https://wa.me/593992246166" class="btn" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <!-- Caja para mostrar el logo; si no carga, queda un placeholder -->
+      <div class="logo-box">
+        <img src="logo-miguelinos.jpeg" alt="Logo Miguelinos de Lelia" onerror="this.style.display='none'; this.parentElement.classList.add('placeholder');"/>
+        <div class="logo-placeholder"> </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== SECCIÓN: BENEFICIOS ====================== -->
+  <section class="container benefits" aria-label="Beneficios">
+    <div class="benefit-card">
+      <div class="benefit-icon">🥛</div>
+      <div>
+        <div class="benefit-title">Fresco y artesanal</div>
+        <div class="benefit-text">Elaboración cuidada, sabor auténtico y calidad constante.</div>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">🚚</div>
+      <div>
+        <div class="benefit-title">Entrega y envíos</div>
+        <div class="benefit-text">Recoge en tienda o recibe a domicilio según tu ciudad.</div>
+      </div>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">💬</div>
+      <div>
+        <div class="benefit-title">Pedido por WhatsApp</div>
+        <div class="benefit-text">Armas tu carrito y te enviamos el resumen listo para confirmar.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== SECCIÓN: SOBRE NOSOTROS ====================== -->
+  <section id="sobre" class="container about">
+    <div class="about-card">
+      <h2>Sobre Miguelinos de Lelia</h2>
+      <p>
+        Somos un emprendimiento de <b>productos lácteos</b> que trabaja con enfoque artesanal y control de calidad.
+        Nuestro objetivo es ofrecerte yogurt y productos derivados de la caña con un sabor natural y una experiencia confiable.
+      </p>
+      <div class="about-actions">
+        <a class="btn primary" href="#productos">Ver catálogo</a>
+        <a class="btn" href="https://wa.me/593992246166" target="_blank" rel="noopener">Hacer pedido</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================== CATÁLOGO / PRODUCTOS ====================== -->
+  <main id="productos" class="container products">
+    <!-- Toolbar con tabs de categoría y buscador -->
+    <div class="toolbar">
+      <div class="tabs">
+        <!-- data-cat define el filtro activo -->
+        <button class="tab active" data-cat="all">Todo</button>
+        <button class="tab" data-cat="yogurt" id="yogurt">Yogurt</button>
+        <button class="tab" data-cat="cana" id="cana">Derivados de la caña</button>
+        <!--<button class="tab" data-cat="leche" id="leche">Leche</button>
+        <button class="tab" data-cat="mermeladas" id="mermeladas">Mermeladas</button>
+        <button class="tab" data-cat="otros" id="otros">Otros</button>-->
+      </div>
+      <!-- Input de búsqueda; se filtra por nombre/desc -->
+      <input id="search" class="search" placeholder="Buscar productos..."/>
+    </div>
+
+    <!-- Grid de tarjetas; se rellena dinámicamente con JS -->
+    <div id="product-list" class="product-grid"></div>
+  </main>
+
+  <!-- ====================== FOOTER ====================== -->
+  <footer class="footer">
+    <div class="container foot-inner">
+      <div class="foot-copy">
+        © 2026 Miguelinos de Lelia — Todos los derechos reservados.<br/>
+        Dirección: Ecuador
+      </div>
+      <div class="foot-contact">
+        <!-- Enlace rápido a WhatsApp y correo -->
+        <a class="chip" href="https://wa.me/593988757892" target="_blank" rel="noopener">📞 +593 98 875 7892</a>
+        <a class="chip" href="mailto:contacto@miguelinosdelelia.ec">📧 miguelinosdelelia@gmail.com</a>
+      </div>
+      <div class="foot-social">
+        <a class="link" href="#" target="_blank" rel="noopener">Facebook Miguelinos de Lelia</a>
+        <a class="link" href="#" target="_blank" rel="noopener">Instagram Miguelinos de Lelia</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====================== DRAWER (CARRITO LATERAL) ====================== -->
+  <!-- Fondo oscuro detrás del drawer; hidden controla visibilidad -->
+  <div id="drawer-overlay" class="overlay" hidden></div>
+
+  <!-- Panel lateral del carrito; aria-hidden para accesibilidad -->
+  <aside id="drawer" class="drawer" aria-hidden="true">
+    <div class="drawer-head">
+      <h2>Tu pedido</h2>
+      <!-- Botón para cerrar el drawer -->
+      <button id="close-cart" class="btn icon" aria-label="Cerrar">✕</button>
+    </div>
+
+    <style>
+
+
+#cart-items{
+display:none;
+}
+
+
+</style>
+    <!-- Cuerpo scrolleable (lista de ítems + resumen + datos cliente) -->
+    <div class="drawer-scroll">
+      <!-- Donde se pintan las filas del carrito (JS) -->
+      <div id="cart-items" class="cart-items list-style"></div> 
+
+      <!-- Resumen de compra: líneas compactas + costos -->
+      <div class="cart-summary">
+        <div class="order-summary">
+          <div class="order-title">Resumen de compra</div>
+          <div id="order-list" class="order-list"></div>
+        </div>
+
+        <!-- Selector de ciudad: define costo de envío -->
+        <label class="row">
+          <span>Ciudad</span>
+          <select id="city">
+            <option value="pickup">Recoger en tienda — $0.00</option>
+            <option value="santo">Santo Domingo (local) — $1.00</option>
+            <option value="quito">Quito — $2.00</option>
+            <!--<option value="guayaquil">Guayaquil — $6.00</option>
+            <option value="cuenca">Cuenca — $7.00</option>
+            <option value="nacional">Nacional (otras ciudades) — $8.00</option>-->
+          </select>
+        </label>
+
+        <!-- Subtotales y total (actualizados por JS) -->
+        <div class="row"><span>Subtotal</span><strong id="subtotal">$0.00</strong></div>
+        <div class="row"><span>Envío</span><strong id="shipping-amount">$0.00</strong></div>
+        <div class="row total"><span>Total</span><strong id="total">$0.00</strong></div>
+      </div>
+
+      <!-- Formulario de datos del cliente (requeridos para enviar por WhatsApp) -->
+      <h3>Datos del cliente</h3>
+      <form id="customer-form" class="form">
+        <input required id="cust-name" placeholder="Nombre y apellido"/>
+        <input required id="cust-phone" placeholder="Teléfono (09...)"/>
+        <input required id="cust-address" placeholder="Dirección"/>
+        <textarea id="cust-notes" placeholder="Notas (horario, referencias...)"></textarea>
+      </form>
+    </div>
+
+    <!-- Acciones sticky al fondo del drawer -->
+    <div class="drawer-actions">
+      <!-- Dispara el armado del mensaje y redirecciona a WhatsApp -->
+      <button id="btn-whatsapp" class="btn primary full">Pagar por WhatsApp</button>
+      <!-- Limpia por completo el carrito -->
+      <button id="btn-clear" class="btn full">Vaciar carrito</button>
+      <p class="hint">Se abrirá WhatsApp con el resumen del pedido.</p>
+    </div>
+  </aside>
+
+  <!-- ====================== LÓGICA (JS INLINE) ====================== -->
+  <!-- JS externo -->
+  <script src="app.js" defer></script>
+</body>
+</html>
