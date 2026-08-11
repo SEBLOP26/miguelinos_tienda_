@@ -7,7 +7,7 @@
 
 
 // ===== CONFIG =====
-const WHATSAPP_PHONE = "593992246166";
+const WHATSAPP_PHONE = "593988757892";
   const SIZES = ["S","M","L","XL"];
   const SHIPPING_BY_CITY = {
     pickup:    {label:"Recoger en tienda",        cents:0},
