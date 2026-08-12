@@ -12,7 +12,7 @@ const WHATSAPP_PHONE = "593988757892";
   const SHIPPING_BY_CITY = {
     pickup:    {label:"Recoger en tienda",        cents:0},
     santo:     {label:"Santo Domingo (local)",     cents:100},
-    quito:     {label:"Quito",                     cents:200},
+    quito:     {label:"Quito, paradas del metro",  cents:200},
     guayaquil: {label:"Guayaquil",                 cents:000},
     cuenca:    {label:"Cuenca",                    cents:000},
     nacional:  {label:"Nacional (otras ciudades)", cents:000},
