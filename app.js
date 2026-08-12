@@ -55,7 +55,7 @@ const WHATSAPP_PHONE = "593988757892";
 {
   id:"y3",
   cat:"yogurt",
-  name:"Yogurt Natural 1 Litro",
+  name:"Yogurt Natural 1000 g",
   desc:"Yogurt artesanal de sabor natural y textura cremosa, elaborado para disfrutar solo o acompañado.",
   priceCents:225,
   img:"img/yogurt-natural.png"
@@ -63,7 +63,7 @@ const WHATSAPP_PHONE = "593988757892";
 {
   id:"y4",
   cat:"yogurt",
-  name:"Yogurt de Fresa 1 Litro",
+  name:"Yogurt de Fresa 1000 g",
   desc:"Yogurt artesanal de textura cremosa y agradable sabor a fresa, ideal para toda la familia.",
   priceCents:225,
   img:"img/yogurt-fresa-1l.png"
@@ -71,7 +71,7 @@ const WHATSAPP_PHONE = "593988757892";
 {
   id:"y5",
   cat:"yogurt",
-  name:"Yogurt de Mora 1 Litro",
+  name:"Yogurt de Mora 1000 g",
   desc:"Yogurt artesanal de textura cremosa y delicioso sabor a mora, perfecto para acompañar tus comidas.",
   priceCents:225,
   img:"img/yogurt-mora-1l.png"
@@ -79,7 +79,7 @@ const WHATSAPP_PHONE = "593988757892";
 {
   id:"y6",
   cat:"yogurt",
-  name:"Yogurt de Mora 2 Litros",
+  name:"Yogurt de Mora 2000 g",
   desc:"Yogurt artesanal con delicioso sabor a mora, presentado en formato familiar de 2 litros.",
   priceCents:350,
   img:"img/yogurt-mora-2l.png"
@@ -87,7 +87,7 @@ const WHATSAPP_PHONE = "593988757892";
 {
   id:"y7",
   cat:"yogurt",
-  name:"Yogurt de Fresa 2 Litros",
+  name:"Yogurt de Fresa 2000 g",
   desc:"Yogurt artesanal con agradable sabor a fresa, presentado en formato familiar de 2 litros.",
   priceCents:350,
   img:"img/yogurt-fresa-2l.png"
@@ -95,7 +95,7 @@ const WHATSAPP_PHONE = "593988757892";
 {
   id:"y8",
   cat:"yogurt",
-  name:"Yogurt Griego Natural 1 Litro",
+  name:"Yogurt Griego Natural 1000 g",
   desc:"Yogurt griego natural de consistencia espesa y cremosa, ideal para desayunos, postres y snacks.",
   priceCents:400,
   img:"img/yogurt-griego-natural.png"
